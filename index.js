@@ -1,5 +1,6 @@
 import http from "http";
 import path from "path";
+import { spawn } from 'child_process'
 import express from "express";
 import { Server as SocketIO } from "socket.io";
 
@@ -11,9 +12,9 @@ app.use(express.static(path.resolve("./public")));
 
 io.on("connection", (socket) => {
   console.log("Socket Connected with ID:", socket.id);
-  socket.on('binaryStream', stream => {
-    console.log('Binary Stream Incoming...')
-  })
+  socket.on("binaryStream", (stream) => {
+    console.log("Binary Stream Incoming...");
+  });
 });
 
 server.listen(3000, () => {
