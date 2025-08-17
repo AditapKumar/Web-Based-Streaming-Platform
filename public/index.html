@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Web Based OBS</title>
     <style>
-      #user-video {
-        width: 100%;
-        max-width: 640px;
-        height: auto;
-        border: 2px solid #ccc;
-        margin-bottom: 20px;
-      }
-      #start-btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-      }
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #video-container {
+            border: 2px solid #ccc;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        video {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+        #start-camera-btn {
+            background-color: #007bff;
+        }
+        #start-stream-btn {
+            background-color: #28a745;
+        }
+        #stop-stream-btn {
+            background-color: #dc3545;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Web Based OBS</h1>
-    <div>
-      <video id="user-video" autoplay muted></video>
-      <button id="start-btn">Start</button>
+    <div id="video-container">
+        <video id="user-video" autoplay muted></video>
     </div>
+    <div class="controls">
+        <button id="start-camera-btn">Start Camera</button>
+        <button id="start-stream-btn" disabled>Start Stream</button>
+        <button id="stop-stream-btn" disabled>Stop Stream</button>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
